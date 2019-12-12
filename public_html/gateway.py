@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 import sys
-sys.path.insert(0, '/data/project/whois/local/lib/python2.7/site-packages')
+#sys.path.insert(0, '/data/project/whois/local/lib/python2.7/site-packages')
 
 import six
 from ipwhois import IPWhois, WhoisLookupError
@@ -50,9 +50,9 @@ def lookup(ip, rdap=False):
         # TODO: RDAP output includes less relevant info, needs a dedicated formatter
         return obj.lookup_rdap()
     else:
-        ret = obj.lookup_whois()
+        ret = obj.lookup_whois(get_referral=True)
         # remove some fields that clutter
-        for x in ['raw', 'raw_referral', 'referral']:
+        for x in ['raw', 'raw_referral']:
             ret.pop(x, None)
         return ret
 
