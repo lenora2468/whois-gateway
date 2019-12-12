@@ -123,6 +123,12 @@ th { font-size: small; }
     if six.PY2:
         ip = ip.decode('utf-8')
     ip = ip.strip().strip(u' \u200b\u200e')
+    ip_arg = ip
+    if '/' in ip:
+      ip = ip.split('/')[0]
+      cidr = True
+    else:
+      cidr = False
 
     result = {}
     error = False
@@ -178,9 +184,14 @@ th { font-size: small; }
 </form>
 '''.format(site=SITE,
            css=css,
-           ip=ip,
+           ip=ip_arg,
            error= 'has-error' if error else '',
            af= 'autofocus onFocus="this.select();"' if (not do_lookup or error) else '')
+
+    if cidr:
+      ret += '''<div class="alert alert-warning" role="alert">
+The IP address you provided included a CIDR range. The results below apply to the IP address you provided, with the CIDR range ignored. There may be other addresses in that range that are not included in this report.
+</div>'''
 
     if do_lookup:
         link = 'https://tools.wmflabs.org/whois-referral/%s/lookup' % ip
