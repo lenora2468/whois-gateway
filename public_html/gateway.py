@@ -69,6 +69,8 @@ def format_table(dct, target):
     ret = '<div class="table-responsive"><table class="table table-condensed"><tbody>'
     for (k, v) in sorted(dct.items(), key=lambda x: order_keys(x[0])):
         if v is None or len(v) == 0 or v == 'NA' or v == 'None':
+            if k in ('referral',):
+                continue
             ret += '<tr class="text-muted"><th>%s</th><td>%s</td></tr>' % (k, v)
         elif isinstance(v, six.string_types):
             if k == 'asn_registry' and v.upper() in PROVIDERS:
