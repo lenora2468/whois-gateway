@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 import sys
-#sys.path.insert(0, '/data/project/whois/local/lib/python2.7/site-packages')
+sys.path.insert(0, '/data/project/whois-referral/venv/lib/python3.5/site-packages')
 
 import six
 from ipwhois import IPWhois, WhoisLookupError
@@ -11,9 +11,9 @@ import cgi
 import json
 import socket
 
-SITE = '//tools.wmflabs.org/whois'
+SITE = '//tools.wmflabs.org/whois-referral'
 
-LOGDIR = '/data/project/whois/logs'
+LOGDIR = '/data/project/whois-referral/logs'
 
 PROVIDERS = {
     'ARIN': lambda x: 'http://whois.arin.net/rest/ip/' + urllib.parse.quote(x),
@@ -183,7 +183,7 @@ th { font-size: small; }
            af= 'autofocus onFocus="this.select();"' if (not do_lookup or error) else '')
 
     if do_lookup:
-        link = 'https://tools.wmflabs.org/whois/%s/lookup' % ip
+        link = 'https://tools.wmflabs.org/whois-referral/%s/lookup' % ip
         hostname = None
         try:
             hostname = socket.gethostbyaddr(ip)[0]
