@@ -122,7 +122,7 @@ th { font-size: small; }
     # remove spaces, the zero-width space and left-to-right mark
     if six.PY2:
         ip = ip.decode('utf-8')
-    ip = ip.strip(u' \u200b\u200e')
+    ip = ip.strip().strip(u' \u200b\u200e')
 
     result = {}
     error = False
