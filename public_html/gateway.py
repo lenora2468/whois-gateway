@@ -6,6 +6,7 @@ import six
 from ipwhois import IPWhois, WhoisLookupError
 import cgitb
 import os
+import re
 from six.moves import urllib
 import cgi
 import json
@@ -109,7 +110,6 @@ def format_link_list(header, ls):
 
 def format_page(form):
     ip = form.getfirst('ip', '')
-    provider = form.getfirst('provider', '').upper()
     fmt = form.getfirst('format', 'html').lower()
     do_lookup = form.getfirst('lookup', 'false').lower() != 'false'
     use_rdap = form.getfirst('rdap', 'false').lower() != 'false'
@@ -124,6 +124,7 @@ th { font-size: small; }
     # remove spaces, the zero-width space and left-to-right mark
     if six.PY2:
         ip = ip.decode('utf-8')
+    ip = re.sub('[^0-9a-f.:]', '', ip, flags=re.I)
     ip = ip.strip().strip(u' \u200b\u200e')
     ip_arg = ip
     if '/' in ip:
@@ -140,9 +141,6 @@ th { font-size: small; }
         except Exception as e:
             result = {'error': repr(e)}
             error = True
-
-    if provider in PROVIDERS:
-        return 'Location: {}\n\n'.format(PROVIDERS[provider](ip))
 
     if fmt == 'json' and do_lookup:
         return 'Content-type: text/plain\n\n{}\n'.format(json.dumps(result))
