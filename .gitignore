@@ -52,3 +52,13 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+.gitconfig
+.bash_history
+.kube/
+.ssh/
+.vim/
+.viminfo
+rebuild_venv.sh
+replica.my.cnf
+service.manifest
+venv/
