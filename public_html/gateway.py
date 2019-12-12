@@ -165,7 +165,7 @@ th { font-size: small; }
 <header><h1>Whois Gateway<span style="color: #20c997; font-size: 18px; font-weight: bold; position: relative; text-transform: uppercase; top: -3px; vertical-align: top;">BETA</span></h1></header>
 </div>
 <div class="col-sm-7"><div class="alert alert-success" role="alert">
-<strong>This is a beta version of the Whois Gateway operated by <a href="https://en.wikipedia.org/wiki/User:ST47">ST47</a>.</strong> It adds support for querying referral DNS servers, such as those provided by Cogent for their 38.0.0.0/8 range. This is done automatically when the provider supports it. The source code for this fork is maintained at <a href="https://github.org/wiki-ST47/whois-gateway/">GitHub</a>.
+<strong>This is a beta version of the Whois Gateway operated by <a href="https://en.wikipedia.org/wiki/User:ST47">ST47</a>.</strong> It adds support for querying referral DNS servers, such as those provided by Cogent for their 38.0.0.0/8 range. This is done automatically when the provider supports it. The source code for this fork is maintained at <a href="https://github.com/wiki-ST47/whois-gateway/">GitHub</a>.
 </div></div>
 </div>
 
