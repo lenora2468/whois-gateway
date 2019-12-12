@@ -147,7 +147,7 @@ th { font-size: small; }
 <meta charset="utf-8">
 <link rel="stylesheet" href="//tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="//tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<title>Whois Gateway</title>
+<title>Whois Gateway Beta</title>
 <style type="text/css">
 {css}
 </style>
@@ -156,10 +156,10 @@ th { font-size: small; }
 <div class="container">
 <div class="row">
 <div class="col-sm-5">
-<header><h1>Whois Gateway</h1></header>
+<header><h1>Whois Gateway<span style="color: #20c997; font-size: 18px; font-weight: bold; position: relative; text-transform: uppercase; top: -3px; vertical-align: top;">BETA</span></h1></header>
 </div>
-<div class="col-sm-7"><div class="alert alert-warning" role="alert">
-<strong>This tool is experimental.</strong> The URL and functionalities might change.
+<div class="col-sm-7"><div class="alert alert-success" role="alert">
+<strong>This is a beta version of the Whois Gateway operated by <a href="https://en.wikipedia.org/wiki/User:ST47">ST47</a>.</strong> It adds support for querying referral DNS servers, such as those provided by Cogent for their 38.0.0.0/8 range. This is done automatically when the provider supports it. The source code for this fork is maintained at <a href="https://github.org/wiki-ST47/whois-gateway/">GitHub</a>.
 </div></div>
 </div>
 
