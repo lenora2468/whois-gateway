@@ -248,10 +248,11 @@ The IP address you provided included a CIDR range. The results below apply to th
 <hr>
 <p class="text-center text-muted">
 <a href="{site}">Whois Gateway</a>
-<small>(<a href="https://github.com/whym/whois-gateway">source code</a>,
+<small>(<a href="https://github.com/wiki-ST47/whois-gateway">source code</a>,
+        <a href="https://github.com/whym/whois-gateway">upstream</a>,
         <a href="https://github.com/whym/whois-gateway#api">API</a>)</small>
         on <a href="https://tools.wmflabs.org">Tool Labs</a> /
-<a href="https://github.com/whym/whois-gateway/issues">Issues?</a>
+<a href="https://github.com/wiki-ST47/whois-gateway/issues">Issues?</a>
 </p>
 </div></footer>
 </div>
