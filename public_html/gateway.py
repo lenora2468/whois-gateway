@@ -27,6 +27,7 @@ PROVIDERS = {
 TOOLS = {
     'Stalktoy': lambda x: 'https://tools.wmflabs.org/meta/stalktoy/' + x,
     'GlobalContribs': lambda x: 'https://tools.wmflabs.org/guc/index.php?user=%s&amp;blocks=true' % x,
+    'ProxyChecker': lambda x: 'https://tools.wmflabs.org/ipcheck/index.php?ip=%s' % x,
 }
 
 
@@ -77,6 +78,10 @@ def format_table(dct, target):
             if k == 'asn_registry' and v.upper() in PROVIDERS:
                 ret += '<tr><th>%s</th><td><a href="%s"><span class="glyphicon glyphicon-link"></span>%s</a></td></tr>' % (
                     k, PROVIDERS[v.upper()](target), v.upper()
+                )
+            elif k == 'asn':
+                ret += '<tr><th>%s</th><td><a href="https://tools.wmflabs.org/isprangefinder/hint.php?type=asn&range=%s">%s</a></td></tr>' % (
+                    k, v, v
                 )
             else:
                 ret += '<tr><th>%s</th><td>%s</td></tr>' % (
