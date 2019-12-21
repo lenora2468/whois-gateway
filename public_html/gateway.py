@@ -129,7 +129,7 @@ th { font-size: small; }
     # remove spaces, the zero-width space and left-to-right mark
     if six.PY2:
         ip = ip.decode('utf-8')
-    ip = re.sub('[^0-9a-f.:]', '', ip, flags=re.I)
+    ip = re.sub('[^0-9a-f.:/]', '', ip, flags=re.I)
     ip = ip.strip().strip(u' \u200b\u200e')
     ip_arg = ip
     if '/' in ip:
