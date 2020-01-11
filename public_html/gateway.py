@@ -50,9 +50,9 @@ def lookup(ip, rdap=False):
     obj = IPWhois(ip)
     if rdap:
         # TODO: RDAP output includes less relevant info, needs a dedicated formatter
-        return obj.lookup_rdap()
+        return obj.lookup_rdap(asn_methods=['dns', 'whois', 'http'])
     else:
-        ret = obj.lookup_whois(get_referral=True)
+        ret = obj.lookup_whois(get_referral=True, asn_methods=['dns', 'whois', 'http'])
         # remove some fields that clutter
         for x in ['raw', 'raw_referral']:
             ret.pop(x, None)
