@@ -27,7 +27,7 @@ PROVIDERS = {
 TOOLS = {
     'Stalktoy': lambda x: 'https://tools.wmflabs.org/meta/stalktoy/' + x,
     'GlobalContribs': lambda x: 'https://tools.wmflabs.org/guc/index.php?user=%s&amp;blocks=true' % x,
-    'ProxyChecker': lambda x: 'https://tools.wmflabs.org/ipcheck/index.php?ip=%s' % x,
+    'ProxyChecker': lambda x: 'https://ipcheck.toolforge.org/index.php?ip=%s' % x,
     'Geolocation': lambda x: 'https://whatismyipaddress.com/ip/%s' % x,
 }
 
