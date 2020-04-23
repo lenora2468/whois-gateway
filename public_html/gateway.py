@@ -10,7 +10,9 @@ import re
 from six.moves import urllib
 import cgi
 import json
+import requests
 import socket
+import geoip2.database
 
 SITE = '//tools.wmflabs.org/whois-referral'
 
@@ -31,9 +33,24 @@ TOOLS = {
     'Geolocation': lambda x: 'https://whatismyipaddress.com/ip/%s' % x,
 }
 
+geolite_file = '/data/project/whois-referral/GeoLite2-City_20200421/GeoLite2-City.mmdb'
+geoip_reader = None
+if os.path.exists(geolite_file):
+    geoip_reader = geoip2.database.Reader(geolite_file)
+
+ipinfo_file = '/data/project/whois-referral/ipinfo_token'
+ipinfo_token = None
+if os.path.exists(ipinfo_file):
+    try:
+        f = open(ipinfo_file)
+        ipinfo_token = f.read().strip()
+    except:
+        pass
+
 
 def order_keys(x):
     keys = dict((y, x) for (x, y) in enumerate([
+        'geolite2', 'geo_ipinfo',
         'asn_registry', 'asn_country_code', 'asn_cidr', 'query',
         'referral', 'nets', 'asn', 'asn_date',
         'name', 'description', 'address',
@@ -50,10 +67,12 @@ def order_keys(x):
 def lookup(ip, rdap=False):
     obj = IPWhois(ip)
     if rdap:
-        # TODO: RDAP output includes less relevant info, needs a dedicated formatter
         return obj.lookup_rdap(asn_methods=['dns', 'whois', 'http'])
     else:
-        ret = obj.lookup_whois(get_referral=True, asn_methods=['dns', 'whois', 'http'])
+        try:
+            ret = obj.lookup_whois(get_referral=True, asn_methods=['dns', 'whois', 'http'])
+        except WhoisLookupError:
+            ret = obj.lookup_whois(asn_methods=['dns', 'whois', 'http'])
         # remove some fields that clutter
         for x in ['raw', 'raw_referral']:
             ret.pop(x, None)
@@ -147,6 +166,28 @@ th { font-size: small; }
         except Exception as e:
             result = {'error': repr(e)}
             error = True
+
+        geoip_res = geoip_reader.city(ip)
+        if geoip_res:
+            try:
+                result['geolite2'] = geoip_res.country.name
+                if geoip_res.subdivisions.most_specific.name:
+                    result['geolite2'] = geoip_res.subdivisions.most_specific.name + ", " + result['geolite2']
+                if geoip_res.city.name:
+                    result['geolite2'] = geoip_res.city.name + ", " + result['geolite2']
+            except Exception as e:
+                result['geolite2'] = "Unavailable: " + repr(e)
+
+        if ipinfo_token:
+            ipinfo = requests.get('https://ipinfo.io/'+ip+'/json?token='+ipinfo_token)
+            ipinfo_json = ipinfo.json()
+            if ipinfo_json and 'error' not in ipinfo_json:
+                result['geo_ipinfo'] = ipinfo_json['country']
+                if 'region' in ipinfo_json:
+                    result['geo_ipinfo'] = ipinfo_json['region'] + ", " + result['geo_ipinfo']
+                if 'city' in ipinfo_json:
+                    result['geo_ipinfo'] = ipinfo_json['city'] + ", " + result['geo_ipinfo']
+
 
     if fmt == 'json' and do_lookup:
         return 'Content-type: text/plain\n\n{}\n'.format(json.dumps(result))
