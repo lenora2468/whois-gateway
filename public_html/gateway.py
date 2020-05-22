@@ -293,7 +293,7 @@ The IP address you provided included a CIDR range. The results below apply to th
 <small>(<a href="https://github.com/wiki-ST47/whois-gateway">source code</a>,
         <a href="https://github.com/whym/whois-gateway">upstream</a>,
         <a href="https://github.com/whym/whois-gateway#api">API</a>)</small>
-        on <a href="https://tools.wmflabs.org">Tool Labs</a> /
+        on <a href="https://toolforge.org">Toolforge</a> /
 <a href="https://github.com/wiki-ST47/whois-gateway/issues">Issues?</a>
 </p>
 </div></footer>
