@@ -1,0 +1,5 @@
+ipwhois==1.2.0
+six
+nose
+geoip2
+flask

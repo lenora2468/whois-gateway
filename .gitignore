@@ -58,7 +58,10 @@ docs/_build/
 .ssh/
 .vim/
 .viminfo
-rebuild_venv.sh
 replica.my.cnf
 service.manifest
 venv/
+venv3.5/
+www/python/venv/
+ipinfo_token
+GeoLite2-City*
