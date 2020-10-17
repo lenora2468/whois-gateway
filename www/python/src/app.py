@@ -238,7 +238,7 @@ The IP address you provided included a CIDR range. The results below apply to th
 </div>'''
 
     if do_lookup:
-        link = 'https://%s.toolforge.org/%s/lookup' % (PROJECT, ip)
+        link = 'https://%s.toolforge.org/gateway.py?lookup=true&ip=%s' % (PROJECT, ip)
         hostname = None
         try:
             hostname = socket.gethostbyaddr(ip)[0]
