@@ -14,7 +14,7 @@ import geoip2.database
 from flask import Flask, request
 
 PROJECT = 'whois-referral'
-SITE = '//'+PROJECT+'.toolforge.org/'
+SITE = '//'+PROJECT+'.toolforge.org'
 LOGDIR = '/data/project/'+PROJECT+'/logs'
 
 PROVIDERS = {
