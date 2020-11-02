@@ -69,7 +69,8 @@ def lookup(ip, rdap=False):
         return obj.lookup_rdap(asn_methods=['dns', 'whois', 'http'])
     else:
         try:
-            ret = obj.lookup_whois(get_referral=True, asn_methods=['dns', 'whois', 'http'])
+            field_list = ['name', 'cidr', 'handle', 'description', 'country', 'state', 'city', 'address', 'postal_code', 'emails', 'created', 'updated']
+            ret = obj.lookup_whois(get_referral=True, get_recursive=False, asn_methods=['dns', 'whois', 'http'], field_list=field_list)
         except WhoisLookupError:
             ret = obj.lookup_whois(asn_methods=['dns', 'whois', 'http'])
         # remove some fields that clutter

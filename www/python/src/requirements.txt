@@ -1,4 +1,4 @@
-ipwhois==1.2.0
+git+git://github.com/wiki-ST47/ipwhois.git@fae007310c5c73ac48e827de555bfce9d9c418ea#egg=ipwhois
 six
 nose
 geoip2
